@@ -1,6 +1,6 @@
 var taskTemplate = '<div class="task">' +
 						'<taskInfo task="task">' +
-						'<div ng-repeat="subtask in task.subtasks" class="subtask-container">' +
+						'<div ng-repeat="(subtaskName, subtask) in task.subtasks" class="subtask-container">' +
 							'<taskInfo task="subtask">' +
 						'</div>' +
 					'</div>';
@@ -17,7 +17,7 @@ var taskInfoTemplate = '<div class="task-info">' +
 angular.module('todo-app', [])
   .controller('mainController', mainController)
   .directive('task', taskDirective)
-  .directive('subtask', subtaskDirective);
+  .directive('taskInfo', taskInfoDirective);
 
 function mainController($scope) {
 	$scope.tasks = {
@@ -53,5 +53,9 @@ function mainController($scope) {
 }
 
 function taskDirective() {
+
+}
+
+function taskInfoDirective() {
 
 }
