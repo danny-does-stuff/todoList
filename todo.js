@@ -9,8 +9,8 @@ var taskTemplate = `
 			</div>
 			<div>
 				<form>
-					Name: <input type='text' ng-model='task.newSubtaskName'>
-					Time: <input type='text' ng-model='task.newSubtaskTime'>
+					New Subtask: <input type='text' ng-model='task.newSubtaskName'>
+					Time: <input type='text' class='time-input' ng-model='task.newSubtaskTime'>
 					<button type='submit' ng-click='addSubTask(task)'>Add</button>
 				</form>
 			</div>
