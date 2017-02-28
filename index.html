@@ -11,11 +11,13 @@
 </head>
 <body>
 	<div ng-app='todo-app' ng-controller='mainController'>
+		Task Name: <input type='text' ng-model='newTaskName'>
+		<button ng-click='addTask(newTaskName)'>Add</button>
 		<div id="header">
 			<h1>Todo List</h1>
 		</div>
 		<div id="todo-list">
-			<div ng-repeat='(taskName, task) in tasks' class="task-container">
+			<div ng-repeat='task in tasks | filter:{complete:false}' class="task-container">
 				<task task='task' />
 			</div>
 		</div>
@@ -23,8 +25,8 @@
 			<h1>Completed</h1>
 		</div>
 		<div id="done-list">
-			<div ng-repeat='(taskName, task) in finishedTasks' class="finished-task-container">
-				<finishedTask task='task' />
+			<div ng-repeat='task in tasks | filter:{complete:true}' class="finished-task-container">
+				<task task='task' />
 			</div>
 		</div>
 	</div>
