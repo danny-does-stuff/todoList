@@ -1,46 +1,53 @@
 var taskTemplate = `
 	<div class="task">
-		<h3>{{task.name}}</h3>
-		Time Remaining: {{sumTime(task)}}
-		<div ng-repeat="subtask in task.subtasks" class="subtask-container">
-			<sub-task subtask="subtask" parent="task" />
+		<div class='task-info'>
+			<span class='title'>{{task.name}}</span> {{sumTime(task)}} min
 		</div>
-		<div>
-			Name: <input type='text' ng-model='task.newTaskName'>
-			Time: <input type='text' ng-model='task.newTaskTime'>
-			<button ng-click='addSubTask(task, task.newTaskName, task.newTaskTime)'>Add</button>
+		<div class='subtasks'>
+			<div ng-repeat="subtask in task.subtasks" class="subtask-container">
+				<sub-task subtask="subtask" parent="task" />
+			</div>
+			<div>
+				<form>
+					Name: <input type='text' ng-model='task.newSubtaskName'>
+					Time: <input type='text' ng-model='task.newSubtaskTime'>
+					<button type='submit' ng-click='addSubTask(task)'>Add</button>
+				</form>
+			</div>
 		</div>
 	</div>
 `;
 
 var subTaskTemplate = `
-	<div class="task-info subtask">
-		<div class="task-icon"></div>
-		<div class="task-title">{{subtask.name}}</div>
-		<div class="task-time">{{subtask.time}}</div>
-		<div class="task-completed-container">
+	<div class="subtask">
+		<div class="task-info">
+			<div class="task-icon"></div>
+			<span class="title">{{subtask.name}}</span> {{subtask.time}} min
 			<input type="checkbox" ng-model='subtask.complete' ng-change='updateParent()'>
 		</div>
 	</div>
 `;
 
 angular.module('todo-app', [])
-  .controller('mainController', mainController)
+	.controller('mainController', mainController)
 	.directive('subTask', subTaskDirective)
-  .directive('task', taskDirective);
+	.directive('task', taskDirective);
+
+
+
 
 function mainController($scope) {
 	$scope.tasks = [
 		{
-			name: 'taskName',
+			name: 'Clean Room',
 			subtasks: [
 				{
-					name: 'subtaskName',
+					name: 'Make Bed',
 					time: 5,
 					complete: false
 				},
 				{
-					name: 'subtask2Name',
+					name: 'Clean Closet',
 					time: 10,
 					complete: true
 				}
@@ -49,7 +56,7 @@ function mainController($scope) {
 			complete: false
 		},
 		{
-			name: 'task2Name',
+			name: 'Clean Kitchen',
 			subtasks: [],
 			time: 0,
 			complete: false
@@ -66,12 +73,16 @@ function mainController($scope) {
 		return time;
 	}
 
-	$scope.addTask = function(name) {
-		$scope.tasks.push({name: name, time: 0, subtasks: [], complete: false});
+	$scope.addTask = function() {
+		$scope.tasks.push({name: $scope.newTaskName, time: 0, subtasks: [], complete: false});
+		$scope.newTaskName = '';
 	}
 
-	$scope.addSubTask = function(task, name, time) {
-		task.subtasks.push({name: name, time: parseInt(time), complete: false});
+	$scope.addSubTask = function(task) {
+		debugger;
+		task.subtasks.push({name: task.newSubtaskName, time: parseInt(task.newSubtaskTime), complete: false});
+		task.newSubtaskName = '';
+		task.newSubtaskTime = '';
 	}
 
 }

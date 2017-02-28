@@ -11,22 +11,28 @@
 </head>
 <body>
 	<div ng-app='todo-app' ng-controller='mainController'>
-		Task Name: <input type='text' ng-model='newTaskName'>
-		<button ng-click='addTask(newTaskName)'>Add</button>
 		<div id="header">
 			<h1>Todo List</h1>
 		</div>
-		<div id="todo-list">
-			<div ng-repeat='task in tasks | filter:{complete:false}' class="task-container">
-				<task task='task' />
+		<div id="incomplete">	
+			<div id="todo-list">
+				<div ng-repeat='task in tasks | filter:{complete:false}' class="task-container">
+					<task task='task' />
+				</div>
 			</div>
+			<form>
+				Task Name: <input type='text' ng-model='newTaskName'>
+				<button type="submit" ng-click='addTask()'>Add</button>
+			</form>
 		</div>
-		<div id="header">
-			<h1>Completed</h1>
-		</div>
-		<div id="done-list">
-			<div ng-repeat='task in tasks | filter:{complete:true}' class="finished-task-container">
-				<task task='task' />
+		<div id="complete">
+			<div id="completed-header">
+				<h1>Completed</h1>
+			</div>
+			<div id="done-list">
+				<div ng-repeat='task in tasks | filter:{complete:true}' class="finished-task-container">
+					<task task='task' />
+				</div>
 			</div>
 		</div>
 	</div>

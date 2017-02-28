@@ -1,0 +1,42 @@
+body {
+	font-family: helvetica;
+}
+
+#header {
+
+}
+
+#todo-list {
+
+}
+
+#incomplete > * {
+	margin-left: 16px;
+	padding: 8px;
+}
+
+.task {
+	padding-bottom: 8px;
+}
+
+.task .title {
+	font-size: 34px;
+	font-weight: bold;
+}
+
+.task-info {
+
+}
+
+.subtasks {
+	margin-left: 32px;
+}
+
+.subtasks > * {
+	padding: 4px;
+}
+
+.subtask .title {
+	font-size: 20px;
+	font-weight: bold;
+}
