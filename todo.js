@@ -1,15 +1,16 @@
 var taskTemplate = `
 	<div class="task">
-		<div class='task-info'>
+		<div class='task-info' style="display:inline-block; vertical-align:middle">
 			<span class='title'>{{task.name}}</span> {{sumTime(task)}} min
+            <input type="button" class={{task.name}}  id="addNew" value="+" ng-click="Show(task.name)" style="font-family: CovesBold; font-size: 25px;"/>
 		</div>
 		<div class='subtasks'>
 			<div ng-repeat="subtask in task.subtasks" class="subtask-container">
 				<sub-task subtask="subtask" parent="task" />
 			</div>
-			<div>
+            <div id={{task.name}} style="display:none;">
 				<form>
-					New Subtask: <input type='text' ng-model='task.newSubtaskName'>
+					Title: <input type='text' ng-model='task.newSubtaskName'>
 					Time: <input type='text' class='time-input' ng-model='task.newSubtaskTime'>
 					<button type='submit' ng-click='addSubTask(task)'>Add</button>
 				</form>
@@ -85,6 +86,21 @@ function mainController($scope) {
 		task.newSubtaskTime = '';
 	}
 
+    $scope.IsVisible = false;
+    $scope.ShowHide = function () {
+        //If DIV is visible it will be hidden and vice versa.
+        $scope.IsVisible = $scope.IsVisible ? false : true;
+    }
+
+    $scope.Show = function (task) {
+        console.log(task)
+        var x = document.getElementById(task);
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
 }
 
 function taskDirective() {
@@ -107,7 +123,23 @@ function subTaskDirective() {
 					allDone = scope.parent.subtasks[i].complete ? allDone : false;
 				}
 				scope.parent.complete = allDone;
+                if (allDone == true) {
+                    console.log("All Done")
+                    console.log(scope.parent.name)
+                    var x = document.getElementsByClassName(scope.parent.name)["addNew"];
+                    console.log(x)
+                    x.style.display = "none";
+                }
 			}
 		}
 	}
+}
+
+function myFunction(task) {
+    var x = document.getElementById(task);
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
 }

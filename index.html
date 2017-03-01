@@ -6,35 +6,46 @@
 <script src="todo.js"></script>
 <!-- <link rel="stylesheet" type="text/css" href="font-awesome/css/style.css"> -->
 <link rel="stylesheet" type="text/css" href="todo.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
 	<meta charset="utf-8">
 	<title>Todo List</title>
 </head>
 <body>
-	<div ng-app='todo-app' ng-controller='mainController'>
-		<div id="header">
-			<h1>Todo List</h1>
-		</div>
-		<div id="incomplete">	
-			<div id="todo-list">
-				<div ng-repeat='task in tasks | filter:{complete:false}' class="task-container">
-					<task task='task' />
-				</div>
-			</div>
-			<form>
-				New Task: <input type='text' ng-model='newTaskName'>
-				<button type="submit" ng-click='addTask()'>Add</button>
-			</form>
-		</div>
-		<div id="complete">
-			<div id="completed-header">
-				<h1>Completed</h1>
-			</div>
-			<div id="done-list">
-				<div ng-repeat='task in tasks | filter:{complete:true}' class="finished-task-container">
-					<task task='task' />
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class=center>
+        <div ng-app='todo-app' ng-controller='mainController'>
+            <div class="jumbotron" id ="incompleteStyle">
+                <div id="header">
+                    <h1><u>Todo List</u></h1>
+                    <input type="button" value="Add New Task" class="btn btn-default" ng-click="ShowHide()" style = "background-color: #FFF" />
+                </div>
+                <div id="incomplete">
+                    <div id="todo-list">
+                        <div ng-repeat='task in tasks | filter:{complete:false}' class="task-container">
+                            <task task='task' />
+                        </div>
+                    </div>
+                    <div ng-show = "IsVisible">
+                        <form>
+                            New Task: <input type='text' ng-model='newTaskName'>
+                            <button type="submit" ng-click='addTask()'>Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="jumbotron" id ="incompleteStyle">
+                <div id="complete" >
+                    <div id="completed-header">
+                        <h1><u>Completed</u></h1>
+                    </div>
+                    <div id="done-list">
+                        <div ng-repeat='task in tasks | filter:{complete:true}' class="finished-task-container">
+                            <task task='task' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

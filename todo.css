@@ -1,6 +1,21 @@
+@font-face {
+  font-family: 'CovesLight';
+  src: url("fonts/CovesLight.otf"); /* File to be stored at your site */
+  }
+
+@font-face {
+  font-family: 'CovesBold';
+  src: url("fonts/CovesBold.otf"); /* File to be stored at your site */
+  }
+
+*{
+    font-family:"CovesLight";
+}
+
 body {
-	font-family: helvetica;
+	font-family: 'CovesLight';
 	padding-left: 16px;
+/*     background: #EFEFEF !important;*/
 }
 
 input {
@@ -13,7 +28,8 @@ input:focus {
 }
 
 #header {
-
+    text-align: center;
+    font-family: 'CovesBold';
 }
 
 #todo-list {
@@ -23,6 +39,16 @@ input:focus {
 #incomplete > * {
 	margin-left: 16px;
 	padding: 8px;
+}
+
+#incompleteStyle {
+    margin-right: 16px;
+    background-color: #D7CEC7;
+}
+
+#complete {
+    margin-right: 16px;
+    background-color: #D7CEC7;
 }
 
 .task {
@@ -36,6 +62,11 @@ input:focus {
 
 .task-info {
 
+}
+
+#completed-header {
+    text-align: center;
+    font-family: 'CovesBold';
 }
 
 .subtasks {
@@ -53,4 +84,17 @@ input:focus {
 
 .time-input {
 	width: 60px;
+}
+
+#addNew {
+    background-color: transparent;
+    border: 1px dashed #FFFFFF; /* Green */
+    margin-left: 15px;
+    height: 35px;
+}
+
+.center {
+    margin: auto;
+    width: 80%;
+    padding: 10px;
 }
